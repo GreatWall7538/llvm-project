@@ -18,11 +18,14 @@ let Component = "CodeGen" in {
 // ClangIR (CIR) diagnostics.
 
 def err_cir_to_cir_transform_failed : Error<
-    "CIR-to-CIR transformation failed">, DefaultFatal;
+    "CIR-to-CIR transformation failed"
+    "\n" "错误：CIR 到 CIR 的转换失败">, DefaultFatal;
 
 def err_cir_verification_failed_pre_passes : Error<
-    "CIR module verification error before running CIR-to-CIR passes">,
+    "CIR module verification error before running CIR-to-CIR passes"
+    "\n" "错误：在运行 CIR 到 CIR 的遍之前发生 CIR 模块验证错误">,
     DefaultFatal;
+}
 
 // Diagnostics relayed from MLIR-side passes/verifier through the
 // clang::DiagnosticsEngine. The full message text comes from MLIR.
