@@ -24,7 +24,13 @@ def trap_ubsan_arith_overflow : Trap<
     "%Add{addition}|"
     "%Sub{subtraction}|"
     "%Mul{multiplication}"
-  "}1 overflow in %2">;
+  "}1 overflow in %2"
+  "\n" "陷阱：%select{无符号|有符号}0 整数 "
+  "%enum_select<UBSanArithKind>{"
+    "%Add{加法}|"
+    "%Sub{减法}|"
+    "%Mul{乘法}"
+  "}1 在 %2 中溢出">;
 
 }
 }
