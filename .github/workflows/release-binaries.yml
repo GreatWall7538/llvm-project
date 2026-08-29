@@ -56,7 +56,6 @@ jobs:
   prepare:
     name: Prepare to build binaries
     runs-on: ${{ inputs.runs-on }}
-    if: github.repository_owner == 'llvm'
     outputs:
       release-version: ${{ steps.vars.outputs.release-version }}
       ref: ${{ steps.vars.outputs.ref }}
@@ -166,7 +165,7 @@ jobs:
 
         case "$INPUTS_RUNS_ON" in
           ubuntu-22.04* | windows-2022)
-            build_runs_on="depot-$INPUTS_RUNS_ON-16"
+            build_runs_on="$INPUTS_RUNS_ON"
             test_runs_on=$build_runs_on
             ;;
           windows-11-arm)
@@ -214,7 +213,6 @@ jobs:
   build-release-package:
     name: "Build Release Package"
     needs: prepare
-    if: github.repository_owner == 'llvm'
     runs-on: ${{ needs.prepare.outputs.build-runs-on }}
     outputs:
       digest: ${{ steps.digest.outputs.digest }}
